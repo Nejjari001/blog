@@ -191,23 +191,34 @@ If you like this project, go ahead and give it a star. It is very much appreciat
 I would like to thank Microverse for providing me with the reading material that helped me during this project development.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- FAQ (optional) -->
 <!-- FAQ (optional) -->
 
 ## ❓ FAQ (OPTIONAL) <a name="faq"></a>
+## ❓ FAQ (OPTIONAL) <a name="faq"></a>
 
+- **Can I reuse this projects' code?**
 - **Can I reuse this projects' code?**
 
   - Yes, it is okay.
+  - Yes, it is okay.
 
+- **Can I contribute to this repository?**
 - **Can I contribute to this repository?**
 
   - Yes. Just contact me at `djmulinde@gmail.com` and I will gladly add you as a contributor to the repository.
+  - Yes. Just contact me at `djmulinde@gmail.com` and I will gladly add you as a contributor to the repository.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
+<!-- LICENSE -->
 
 ## 📝 License <a name="license"></a>
+## 📝 License <a name="license"></a>
 
+This project is [MIT](./LICENSE) licensed.
 This project is [MIT](./LICENSE) licensed.
