@@ -85,7 +85,7 @@ html {
   width: 100%;
 }
 
-.comments > p {
+.comments>p {
   padding: 5px;
 }
 
@@ -150,4 +150,34 @@ html {
 .post-container {
   width: 70%;
   margin: auto;
+}
+
+.comment-like {
+  display: flex;
+  gap: 1em;
+}
+
+.comment {
+  margin-top: 10px;
+}
+
+.comment a:link {
+  text-decoration: none;
+  background-color: rgb(41, 162, 255);
+  padding: 10px;
+  border-radius: 5px;
+  color: #000;
+}
+
+.like-btn {
+  background-color: aquamarine;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.like-btn:hover {
+  background-color: rgb(0, 255, 170);
+  color: rgb(56, 56, 56);
 }
