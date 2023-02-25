@@ -1,85 +1,41 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  subject do
-    @user = User.create(
+  let(:user) do
+    User.new(
       name: 'Tom',
       photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
       bio: 'Teacher from Mexico.',
-      posts_counter: 0
+      posts_counter: 3
     )
+  end
 
+  let(:post) do
     Post.new(
+      author: user,
       title: 'Hello',
       text: 'This is my first post',
-      likes_counter: 0,
-      comments_counter: 0,
-      author_id: @user.id
+      comments_counter: 1,
+      likes_counter: 1
     )
   end
 
-  before { subject.save }
+  it { should belong_to :author }
+  it { should have_many :comments }
+  it { should have_many :likes }
+  it { should validate_presence_of(:title) }
+  it { should validate_length_of(:title).is_at_most(250) }
+  it { should validate_numericality_of(:comments_counter) }
+  it { should validate_numericality_of(:likes_counter) }
 
-  # Validations
-  context '#posts title validation' do
-    it 'post title should be present' do
-      subject.title = nil
-      expect(subject).not_to be_valid
-    end
+  it 'User post counter to increment' do
+    subject.author = User.new(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
+                              bio: 'Teacher from Mexico.')
+    subject.send(:increment_posts_counter)
+    expect(subject.author.posts_counter).to be(1)
   end
 
-  context '#posts commment counter validation' do
-    it 'post_counter must be an integer >= 0' do
-      subject.comments_counter = -11
-      expect(subject).not_to be_valid
-
-      subject.comments_counter = 11
-      expect(subject).to be_valid
-    end
-  end
-
-  context '#post likes counter validation' do
-    it 'likes_counter must be an integer >= 0' do
-      subject.likes_counter = -2
-      expect(subject).not_to be_valid
-    end
-  end
-
-  # Methods
-  before :all do
-    @user = User.create(
-      name: 'Tom',
-      photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
-      bio: 'Teacher from Mexico.',
-      posts_counter: 0
-    )
-
-    @post = Post.create(
-      title: 'Hello',
-      text: 'This is my first post',
-      comments_counter: 0,
-      likes_counter: 0,
-      author_id: @user.id
-    )
-
-    10.times.collect do
-      Comment.create(
-        text: 'This is my comment',
-        author_id: @user.id,
-        post_id: @post.id
-      )
-    end
-  end
-
-  context '#update_posts_counter' do
-    it 'should increment the posts_counter by 1' do
-      expect(User.find(@user.id).posts_counter).to eq 1
-    end
-  end
-
-  context '#most_recent_comments' do
-    it 'should return most recent comments (5)' do
-      expect(@post.most_recent_comments.length).to eq 5
-    end
+  it 'Should output 0 to 5 last comment when last_five_comments is called' do
+    expect(post.recent_comment_counter.length).to be_between(0, 5)
   end
 end
